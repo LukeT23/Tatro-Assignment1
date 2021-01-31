@@ -1,0 +1,32 @@
+name: Build and Test
+
+on:
+  push
+
+jobs:
+
+  build-and-test-windows:
+    name: Build and Test on Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Setup Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1
+      - name: Check Out Source Code
+        uses: actions/checkout@v2
+      - name: nmake Build
+        run: nmake
+      - name: Run Executable
+        run: .\assignment1.exe
+
+  build-and-test-linux:
+    name: Build and Test on Linux
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Out Source Code
+        uses: actions/checkout@v2
+      - name: GNU make Build
+        run: make
+      - name: Run Executable
+        run: ./assignment1
