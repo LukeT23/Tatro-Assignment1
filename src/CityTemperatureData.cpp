@@ -33,32 +33,64 @@ using namespace std;
 namespace csi281 {
     // Fill in all instance variables for CityTemperatureData.
     CityTemperatureData::CityTemperatureData(const string name, CityYear data[], int numYears) : _name(name), _data(data), _count(numYears) {
+        _data = new CityYear[_count]; 
+
     }
     
     // Release any memory connected to CityTemperatureData.
     CityTemperatureData::~CityTemperatureData() {
-        // YOUR CODE HERE
+      //  delete[] _data; 
     }
     
     // Look up a CityYear instance held by CityTemperatureData by its year.
     // Find the right CityYear in the array and return it
     const CityYear CityTemperatureData::operator[](const int year) const {
         // YOUR CODE HERE
+        int size = CityTemperatureData::count();
+        for (int i = 0; i < size; i++)
+        {
+            if (this->_data[i].year == year)
+            {
+                return this->_data[i];
+            }
+        }
     }
     
     // Get the average (mean) temperature of all time for this city
     // by averaging every CityYear.
     float CityTemperatureData::getAllTimeAverage() const {
         // YOUR CODE HERE
+        float total = 0;
+        int size = this->count();
+        for (int i = 0; i < size; i++)
+        {
+            total += this->_data[i].averageTemperature;
+        }
+
+        return total / size; 
     }
     
     // Sum all of the days below 32 for all years.
     int CityTemperatureData::getTotalDaysBelow32() const {
-        // YOUR CODE HERE
+        int total = 0;
+        int size = this->count();
+        for (int i = 0; i < size; i++)
+        {
+            total += this->_data[i].numDaysBelow32;
+        }
+
+        return total; 
     }
     
     // Sum all of the days above 90 for all years.
     int CityTemperatureData::getTotalDaysAbove90() const {
-        // YOUR CODE HERE
+        int total = 0;
+        int size = this->count();
+        for (int i = 0; i < size; i++)
+        {
+            total += this->_data[i].numDaysAbove90; 
+        }
+
+        return total;
     }
 }

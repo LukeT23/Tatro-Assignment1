@@ -73,19 +73,57 @@ namespace csi281 {
     // You'll want to use the standard library function getline()
     // and the readCell() functions above
     // You'll also want to construct a CityYear from what you have read from the file
-    CityYear readLine(ifstream &file) {
-        // YOUR CODE HERE
-    }
+	CityYear readLine(ifstream& file) {
+    		CityYear newCityTemp; 
     
-    // Read city by looking at the specified lines in the CSV
-    // You'll need to open an ifstream to fileName
-    // You'll need to read CityYears from the file using readLine() until there
-    // is nothing left to read
-    // The ifstream method good() may be useful
-    // Make sure to just read between startLine and endLine
-    // Construct a CityTemperatureData and return it
-    CityTemperatureData readCity(string cityName, string fileName, int startLine, int endLine)  {
-        // YOUR CODE HERE
-    }
+    		istringstream myString;
+    		string trash; 
+   		 string line;
+
+    		getline(file, line);
+
+    		myString = (istringstream)line;
+
+    		trash = readStringCell(myString);
+    		trash = readStringCell(myString);
+
+    		newCityTemp.year = readIntCell(myString);
+    		newCityTemp.numDaysBelow32 = readIntCell(myString);
+    		newCityTemp.numDaysAbove90 = readIntCell(myString);
+
+    		newCityTemp.averageTemperature = readFloatCell(myString); 
+    		newCityTemp.averageMax = readFloatCell(myString);
+    		newCityTemp.averageMin = readFloatCell(myString); 
+
+    		return newCityTemp; 
+	}
+
+	CityTemperatureData readCity(string cityName, string fileName, int startLine, int endLine) {
+    		int size = endLine - startLine; 
+    
+   		 CityYear *array = NULL;
+    		CityTemperatureData newCity(cityName, array, size);
+    
+    		ifstream inFile;
+    		inFile.open("tempdata.csv");
+   		if (inFile.fail())
+   		{
+        		cout << "File failed to open" << endl; 
+    		}
+
+    		else
+    		{
+        		int index = 0; 
+        		for (int i = startLine; i < endLine; i++)
+        		{
+            		array[index] = readLine(inFile); 
+            		index++; 
+        		}
+    		}
+
+    		inFile.close(); 
+    
+    		return newCity; 
+ 	}
 }
 
