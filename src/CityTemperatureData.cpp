@@ -46,14 +46,25 @@ namespace csi281 {
     // Find the right CityYear in the array and return it
     const CityYear CityTemperatureData::operator[](const int year) const {
         // YOUR CODE HERE
-        int size = CityTemperatureData::count();
-        for (int i = 0; i < size; i++)
-        {
-            if (this->_data[i].year == year)
-            {
-                return this->_data[i];
-            }
-        }
+     
+    	CityYear blankYear; 
+   	 CityYear retVal; 
+    	blankYear.year = 0; 
+    	int size = CityTemperatureData::count();
+    	for (int i = 0; i < size; i++)
+    	{
+        	if (this->_data[i].year == year)
+        	{
+           	 retVal = _data[i];
+        	}
+
+        	else
+        	{
+          	  retVal = blankYear; 
+       		}
+    	}
+
+    	return retVal; 
     }
     
     // Get the average (mean) temperature of all time for this city
