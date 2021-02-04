@@ -46,9 +46,9 @@ namespace csi281 {
     // Find the right CityYear in the array and return it
     const CityYear CityTemperatureData::operator[](const int year) const {
         // YOUR CODE HERE
-     
+ 
     	CityYear blankYear; 
-   	 CityYear retVal; 
+   	    CityYear retVal; 
     	blankYear.year = 0; 
     	int size = CityTemperatureData::count();
     	for (int i = 0; i < size; i++)
@@ -56,6 +56,7 @@ namespace csi281 {
         	if (this->_data[i].year == year)
         	{
            	 retVal = _data[i];
+             break; 
         	}
 
         	else

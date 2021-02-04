@@ -99,7 +99,7 @@ namespace csi281 {
 	}
 
 	CityTemperatureData readCity(string cityName, string fileName, int startLine, int endLine) {
-    	int size = endLine - startLine + 1; 
+        int size = ((endLine - startLine) + 1); 
     
         CityYear* array = new CityYear[size];
     	CityTemperatureData newCity(cityName, array, size);
