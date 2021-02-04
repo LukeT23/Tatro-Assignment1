@@ -114,13 +114,13 @@ namespace csi281 {
     	else
     	{
             string trash;
-            for (int i = 0; i <= startLine; i++)
+            for (int i = 0; i < startLine; i++)
             {
                 getline(inFile, trash);
             }
 
         	int index = 0; 
-        	for (int i = startLine; i < endLine; i++)
+        	for (int i = startLine; i <= endLine; i++)
         	{
             	array[index] = readLine(inFile); 
             	index++; 
