@@ -114,7 +114,7 @@ namespace csi281 {
     	else
     	{
             string trash;
-            for (int i = 0; i < startLine; i++)
+            for (int i = 0; i <= startLine; i++)
             {
                 getline(inFile, trash);
             }

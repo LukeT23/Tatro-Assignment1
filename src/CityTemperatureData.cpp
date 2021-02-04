@@ -33,7 +33,7 @@ using namespace std;
 namespace csi281 {
     // Fill in all instance variables for CityTemperatureData.
     CityTemperatureData::CityTemperatureData(const string name, CityYear data[], int numYears) : _name(name), _data(data), _count(numYears) {
-       // _data = new CityYear[_count]; 
+       
 
     }
     
