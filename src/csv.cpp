@@ -78,11 +78,11 @@ namespace csi281 {
     
     		istringstream myString;
     		string trash; 
-   		 string line;
+   		    string line;
 
     		getline(file, line);
 
-    		myString = (istringstream)line;
+    		myString = istringstream(line);
 
     		trash = readStringCell(myString);
     		trash = readStringCell(myString);
@@ -99,31 +99,37 @@ namespace csi281 {
 	}
 
 	CityTemperatureData readCity(string cityName, string fileName, int startLine, int endLine) {
-    		int size = endLine - startLine; 
+    	int size = endLine - startLine + 1; 
     
-   		 CityYear *array = NULL;
-    		CityTemperatureData newCity(cityName, array, size);
+        CityYear* array = new CityYear[size];
+    	CityTemperatureData newCity(cityName, array, size);
     
-    		ifstream inFile;
-    		inFile.open("tempdata.csv");
+    	ifstream inFile;
+    	inFile.open("tempdata.csv");
    		if (inFile.fail())
    		{
-        		cout << "File failed to open" << endl; 
-    		}
+        	cout << "File failed to open" << endl; 
+    	}
 
-    		else
-    		{
-        		int index = 0; 
-        		for (int i = startLine; i < endLine; i++)
-        		{
-            		array[index] = readLine(inFile); 
-            		index++; 
-        		}
-    		}
+    	else
+    	{
+            string trash;
+            for (int i = 0; i < startLine; i++)
+            {
+                getline(inFile, trash);
+            }
 
-    		inFile.close(); 
+        	int index = 0; 
+        	for (int i = startLine; i < endLine; i++)
+        	{
+            	array[index] = readLine(inFile); 
+            	index++; 
+        	}
+    	}
+
+    	inFile.close(); 
     
-    		return newCity; 
+    	return newCity; 
  	}
 }
 
